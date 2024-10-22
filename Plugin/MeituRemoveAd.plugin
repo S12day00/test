@@ -1,0 +1,42 @@
+#!name = 美图秀秀去广告
+#!desc = 移除开屏广告、横幅推广，精简我的页面，解锁svip
+#!openUrl =
+#!author = 就像风住了风又起[https://t.me/S12day00]
+#!tag = 去广告
+#!system =
+#!system_version =
+#!loon_version = 3.2.1(749)
+#!homepage = https://github.com/S12day00/Loon
+#!icon = https://raw.githubusercontent.com/S12day00/Loon/main/Icon/App/Meitu.png
+#!date = 2024-09-01 00:25:23
+
+[Rule]
+# 美图秀秀
+DOMAIN, adui.tg.meitu.com, REJECT
+
+[Rewrite]
+# 精简应用配置 - 福利严选beauty / 开屏广告data.splashControl
+^https:\/\/api\.xiuxiu\.meitu\.com\/v\d\/common\/config\.json response-body-json-del data.home_top_live data.splashControl
+
+# 订阅弹窗
+^https:\/\/(api|tool)\.xiuxiu\.meitu\.com\/v\d\/vip\/sub_popup\.json reject-dict
+^https:\/\/(api|tool)\.xiuxiu\.meitu\.com\/\/v\d\/vip\/popup_show\.json reject-dict
+^https:\/\/api\.posters\.meitu\.com\/homepage\/leaflets\.json\? reject-dict
+
+# 首页轮播图
+# ^https:\/\/(api|tool)\.xiuxiu\.meitu\.com\/v\d\/tool\/common\/home_background\.json reject-dict
+
+# 首页右上角推广图标
+^https:\/\/(api|tool)\.xiuxiu\.meitu\.com\/v\d\/tool\/common\/operation_icon\.json response-body-json-del data.home_top_icon
+
+# 设计室 - 右上角VIP图标data.vip
+^https:\/\/api\.posters\.meitu\.com\/common\/init\.json response-body-json-del data.vip
+
+# 精简我的页面 - 有奖调研data[0].items[10] / 进入钱包data[1].scheme data[1].wallet_title / 借钱 备用金data[1].items[1] / 茉颜data[2].items[1]
+^https:\/\/(api|tool)\.xiuxiu\.meitu\.com\/v\d\/tool\/common\/home\.json response-body-json-del data[0].items[10] data[1].scheme data[1].wallet_title data[1].items[1] data[1].items[1] data[2].items[1]
+
+[Script]
+http-response ^https?:\/\/((h5|api)\.xiuxiu|api-sub|api\.posters)\.meitu\.com\/.+\/(vip|user|h\d|center|home) script-path = https://raw.githubusercontent.com/S12day00/Loon/main/Script/Meitu/MeituUnlock.js, requires-body = true, timeout = 60, tag = 美图秀秀解锁
+
+[MitM]
+hostname = *.xiuxiu.meitu.com, tool.xiuxiu.meitu.com, api.posters.meitu.com, api-sub.meitu.com

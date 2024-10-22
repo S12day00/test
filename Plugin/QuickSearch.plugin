@@ -1,0 +1,37 @@
+#!name = 快捷搜索
+#!desc = 为Safari提供快速切换搜索引擎的能力，点击下方链接查看使用说明
+#!openUrl = https://raw.githubusercontent.com/S12day00/Loon/main/Document/QuickSearch/READNE.md
+#!author = 就像风住了风又起[https://t.me/S12day00]
+#!tag = 功能增强
+#!system =
+#!system_version =
+#!loon_version = 3.2.1(749)
+#!homepage = https://github.com/S12day00/Loon
+#!icon = https://raw.githubusercontent.com/S12day00/Loon/main/Icon/App/Safari.png
+#!date = 2024-06-02 13:48:55
+
+[Rewrite]
+# Safari内输入快捷键+空格+搜索关键词快速指定搜索引擎搜索
+# 先进入设置更改Safari默认搜索为Bing
+
+# bd = 百度搜索
+# bdimg = 百度图片搜索
+# g = Google搜索
+# gimg = Google图片搜索
+# wk = 维基搜索
+# qm = 七麦搜索
+# gh = GitHub搜索
+# bimg = Bing图片搜索
+# 无快捷键则默认使用Bing搜索
+
+^https:\/\/www\.bing\.com\/search\?q=bd\+([^&]+).+ 302 https://www.baidu.com/s?wd=$1
+^https:\/\/www\.bing\.com\/search\?q=bdimg\+([^&]+).+ 302 https://image.baidu.com/search/index?tn=baiduimage&word=$1
+^https:\/\/www\.bing\.com\/search\?q=g\+([^&]+).+ 302 https://www.google.com/search?q=$1
+^https:\/\/www\.bing\.com\/search\?q=gimg\+([^&]+).+ 302 https://www.google.com/search?&tbm=isch&q=$1
+^https:\/\/www\.bing\.com\/search\?q=wk\+([^&]+).+ 302 https://zh.wikipedia.org/wiki/$1
+^https:\/\/www\.bing\.com\/search\?q=qm\+([^&]+).+ 302 https://www.qimai.cn/search/index/country/cn/search/$1
+^https:\/\/www\.bing\.com\/search\?q=gh\+([^&]+).+ 302 https://github.com/search?q=$1
+^https:\/\/www\.bing\.com\/search\?q=bimg\+([^&]+).+ 302 https://www.bing.com/images/search?q=$1
+
+[MitM]
+hostname = www.bing.com

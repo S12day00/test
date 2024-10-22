@@ -1,0 +1,31 @@
+#!name = Bing AI
+#!desc = 将Safari浏览器伪装为Edge浏览器，以便绕过BingAI的使用限制
+#!openUrl = 
+#!author = 就像风住了风又起[https://t.me/S12day00]
+#!tag = 功能增强
+#!system =
+#!system_version =
+#!loon_version = 3.2.1(749)
+#!homepage = https://github.com/S12day00/Loon
+#!icon = https://raw.githubusercontent.com/S12day00/Loon/main/Icon/App/Bing.png
+#!date = 2023-09-08 13:48:55
+
+[Rule]
+DOMAIN-SUFFIX, bing.com, PROXY
+DOMAIN-SUFFIX, bing.com.cn, PROXY
+DOMAIN-SUFFIX, bing.net, PROXY
+DOMAIN-SUFFIX, bingads.com, PROXY
+DOMAIN-SUFFIX, bingagencyawards.com, PROXY
+DOMAIN-SUFFIX, bingapistatistics.com, PROXY
+DOMAIN-SUFFIX, bingsandbox.com, PROXY
+DOMAIN-SUFFIX, bingvisualsearch.com, PROXY
+DOMAIN-SUFFIX, bingworld.com, PROXY
+
+#[Rewrite]
+#^https:\/\/www\.bing\.com\/(search|new) header-add X-Forwarded-For 1.1.1.1
+
+[Script]
+http-request ^https:\/\/www\.bing\.com\/(search|new) script-path = https://raw.githubusercontent.com/S12day00/Loon/main/Script/Bing/BingAI.js, requires-body = false, tag = Bing AI
+
+[MitM]
+hostname = www.bing.com

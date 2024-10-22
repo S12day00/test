@@ -1,0 +1,37 @@
+#!name = 美团去广告
+#!desc = 过滤美团广告
+#!openUrl =
+#!author = 就像风住了风又起[https://t.me/S12day00]
+#!tag = 去广告
+#!system =
+#!system_version =
+#!loon_version = 3.2.1(749)
+#!homepage = https://github.com/S12day00/Loon
+#!icon = https://raw.githubusercontent.com/S12day00/Loon/main/Icon/App/Meituan.png
+#!date = 2024-9-22 11:00:02
+
+[Rule]
+DOMAIN, flowplus.meituan.net, REJECT
+DOMAIN-SUFFIX,analytics.meituan.net, REJECT
+DOMAIN-SUFFIX,meituan.xn, REJECT
+DOMAIN-SUFFIX,meituan.yoga, REJECT
+DOMAIN-SUFFIX,meituangov.cn, REJECT
+DOMAIN-SUFFIX,report.meituan.com, REJECT
+DOMAIN-SUFFIX,wmlog.meituan.com, REJECT
+DOMAIN-SUFFIX,ad.e.waimai.sankuai.com, REJECT
+DOMAIN-SUFFIX,mads.meituan.com, REJECT
+DOMAIN-SUFFIX,dreport.meituan.net, REJECT
+DOMAIN-SUFFIX,d.meituan.net, REJECT
+
+[Rewrite]
+# 美团 hostname = img.meituan.net, s3plus.meituan.net, flowplus.meituan.net
+^https?:\/\/wmapi\.meituan\.com\/api\/v7\/(loadInfo|openscreen|startpicture)\? reject-dict
+^https?:\/\/(s3plus|flowplus)\.meituan\.net\/v\d\/\w+\/linglong\/\w+\.(gif|jpg|mp4) reject-dict
+^https?:\/\/img\.meituan\.net\/bizad\/bizad_brandCpt_\d+\.jpg reject-dict
+^https?:\/\/s3plus\.meituan\.net\/ocean-blk-index\/index\/blk_conf_73\.json reject-dict
+^https?:\/\/s3plus\.meituan\.net\/v1\/mss_\w+\/(brandcpt-vedio|waimai-alita)\/\w+\.zip$ reject-dict
+# 美团订单详情页更多推荐
+^https?:\/\/apimobile\.meituan\.com\/group\/v1\/recommend\/unity\/recommends reject-dict
+
+[MitM]
+hostname = img.meituan.net, s3plus.meituan.net, flowplus.meituan.net
