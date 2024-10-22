@@ -9,7 +9,8 @@
 #!homepage = https://github.com/S12day00/Loon
 #!icon = https://raw.githubusercontent.com/S12day00/Loon/main/Icon/App/Sub-Store.png
 #!select = 节点缓存有效期, 1分钟, 5分钟, 10分钟, 30分钟, 1小时, 2小时, 3小时, 6小时, 12小时, 24小时, 48小时, 72小时
-#!date = 2024-02-23 20:09:25
+#!select = 响应头缓存有效期, 1分钟, 5分钟, 10分钟, 30分钟, 1小时, 2小时, 3小时, 6小时, 12小时, 24小时, 48小时, 72小时
+#!date = 2024-10-22 14:00:18
 
 [Rule]
 DOMAIN, sub-store.vercel.app, PROXY
