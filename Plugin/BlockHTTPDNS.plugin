@@ -1,6 +1,6 @@
 #!name = 拦截HTTPDNS
 #!desc = 拦截常见的HTTPDNS服务，以确保这些请求都能够在Loon的DNS框架下工作
-#!openUrl = 
+#!openUrl =
 #!author = 就像风住了风又起[https://t.me/S12day00]
 #!tag = DNS
 #!system =
